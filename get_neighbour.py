@@ -36,17 +36,16 @@ with open(processed_raw_path, 'w', encoding="utf8") as f:
 
 # raw dataset of cora
 
-# 对节点1-10进行操作
+
 nodes_to_search = range(0, 2707)
 node_sequences = {}
 
-# 加载Cora数据集
+
 dataset = Planetoid(root='/tmp/Cora', name='Cora')
 data = dataset[0]
 
 cora_neighbors = []
 for node in nodes_to_search:
-    # 找到1-hop邻居节点并打印
     neighbors = torch.where(data.edge_index[0] == node)[0]
     hop1_nodes = [data.edge_index[1, neighbor].item() for neighbor in neighbors]
 
